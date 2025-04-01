@@ -1,32 +1,26 @@
 import mysql.connector
 
 
-class Keyboards:
-    def __init__(self, name, price):
+class Sosiski:
+    def __init__(self, name, price, date):
         self.name = name
         self.price = price
+        self.date = date
 
 
 cnx = mysql.connector.connect(
     host="localhost",
     user="pk21",
     password="1234",
-    database="keyboard")
+    database="sosiski")
 cursor = cnx.cursor()
-cursor.execute("SELECT * FROM keyboard")
+cursor.execute("SELECT * FROM sosiski")
 ans = cursor.fetchall()
 print(ans)
+sosiski = []
+for item in ans:
+    tmp_sosiska = Sosiski(item[1],item[2],item[3])
+    sosiski.append(tmp_sosiska)
 
-k1 = Keyboards("белая", 1200)
-k2 = Keyboards("Китай дешевый",5400)
-x=[k1,k2]
-for item in x:
-    print(item.name, item.price)
-
-
-
-print("name: ", k1.name)
-print("price: ", k1.price)
-print("name: ", k2.name)
-print("price: ", k2.price)
-
+for item in sosiski:
+    print(item.name, item.price, item.date)

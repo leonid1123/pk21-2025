@@ -1,6 +1,7 @@
 import mysql.connector
 from tkinter import *
 
+
 class App:
     def __init__(self):
         self.my_list = []
@@ -11,6 +12,11 @@ class App:
         self.get_all_inv()
 
         win = Tk()
+        self.setUI()
+
+        win.mainloop()
+
+    def setUI(self):
         win.title("Инвентарь и вещи")
         win.geometry("1000x600")
         my_list_var = Variable(value=self.my_list)
@@ -23,7 +29,6 @@ class App:
         my_inv_var = Variable(value=self.my_inv)
         inv_view = Listbox(listvariable=my_inv_var, width=80, **font_style)
         inv_view.grid(row=3, column=0)
-        win.mainloop()
 
     def db_connect(self):
         """метод для подключения к базе данных.
